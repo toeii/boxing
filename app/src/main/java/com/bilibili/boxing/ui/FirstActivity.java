@@ -113,7 +113,9 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
                         .appendPath(cachePath)
                         .appendPath(String.format(Locale.US, "%s.png", System.currentTimeMillis()))
                         .build();
-                BoxingConfig singleCropImgConfig = new BoxingConfig(BoxingConfig.Mode.SINGLE_IMG).withCropOption(new BoxingCropOption(destUri))
+
+                BoxingCropOption cropOption = new BoxingCropOption(destUri);
+                BoxingConfig singleCropImgConfig = new BoxingConfig(BoxingConfig.Mode.SINGLE_IMG).withCropOption(cropOption)
                         .withMediaPlaceHolderRes(R.drawable.ic_boxing_default_image);
                 Boxing.of(singleCropImgConfig).withIntent(this, BoxingActivity.class).start(this, REQUEST_CODE);
                 break;

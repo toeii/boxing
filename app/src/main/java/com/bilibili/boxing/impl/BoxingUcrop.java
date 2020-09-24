@@ -49,6 +49,13 @@ public class BoxingUcrop implements IBoxingCrop {
         crop.withMaxResultSize(cropConfig.getMaxWidth(), cropConfig.getMaxHeight());
         crop.withAspectRatio(cropConfig.getAspectRatioX(), cropConfig.getAspectRatioY());
 
+        crop.setCircleDimmedLayer(cropConfig.getCropMode());
+        crop.setShowCropFrame(!cropConfig.getCropMode());
+        crop.setShowCropGrid(!cropConfig.getCropMode());
+        if(cropConfig.getCropMode()){
+            crop.withAspectRatio(1,1);
+        }
+
         UCrop.of(uri, cropConfig.getDestination())
                 .withOptions(crop)
                 .start(context, fragment, requestCode);

@@ -33,6 +33,7 @@ public class BoxingCropOption implements Parcelable {
     private float mAspectRatioY;
     private int mMaxWidth;
     private int mMaxHeight;
+    private boolean mCropMode;
 
     public BoxingCropOption(Uri destination) {
         this.mDestination = destination;
@@ -60,6 +61,13 @@ public class BoxingCropOption implements Parcelable {
         return this;
     }
 
+    public boolean getCropMode() {
+        return mCropMode;
+    }
+
+    public void isCircleMode(boolean mCropMode) {
+        this.mCropMode = mCropMode;
+    }
 
     public float getAspectRatioX() {
         return mAspectRatioX;

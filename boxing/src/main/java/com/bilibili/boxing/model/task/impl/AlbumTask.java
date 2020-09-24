@@ -69,7 +69,7 @@ public class AlbumTask {
         String[] distinctBucketColumns = new String[]{Media.BUCKET_ID, Media.BUCKET_DISPLAY_NAME};
         Cursor bucketCursor = null;
         try {
-            bucketCursor = cr.query(Media.EXTERNAL_CONTENT_URI, distinctBucketColumns, "0==0)" + " GROUP BY(" + Media.BUCKET_ID, null,
+            bucketCursor = cr.query(Media.EXTERNAL_CONTENT_URI, distinctBucketColumns, "0==0)" + " GROUP BY (" + Media.BUCKET_ID, null,
                     Media.DATE_MODIFIED + " desc");
             if (bucketCursor != null && bucketCursor.moveToFirst()) {
                 do {
