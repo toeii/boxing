@@ -20,6 +20,19 @@ Step 2.
     }
 ```
 
+注意：如果没有引入ucrop的话，需要引入ucrop
+
+```XML
+    dependencies {
+	...
+        implementation('com.yalantis:ucrop:2.2.0') {
+		exclude group: 'com.android.support'
+		exclude group: 'com.squareup.okio'
+		exclude group: 'com.squareup.okhttp3'
+	}
+    }
+```
+
 ## 更新说明
 ### v1.0.6
 ---
