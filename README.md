@@ -1,5 +1,5 @@
 # boxing改
-因boxing长期没人维护，为了解决以前项目留下的问题，便新建分支对[boxing](https://github.com/bilibili/boxing)进行升级和修复。
+因boxing长期没人维护，为了解决以前项目留下的问题，便新建分支对boxing进行升级和修复。
 
 ## Gradle
 Step 1. 
