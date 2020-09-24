@@ -1,140 +1,25 @@
-## boxing
+# boxing改
+
+因boxing长期没人维护，为了解决以前项目留下的顽疾，便新建分支对[boxing](https://github.com/bilibili/boxing)进行升级和修复。
+
+## v1.0.6
 ---
-Android multi-media selector based on MVP mode.[中文文档](README_CN.md)  [![Build Status](https://travis-ci.org/Bilibili/boxing.svg?branch=master)](https://travis-ci.org/Bilibili/boxing)
+- 适配Android 11
+- 修复圆形裁剪结果图为矩形的问题
 
-#### boxing Inside: 
-[![bili](screenshot/bili.webp)](https://play.google.com/store/apps/details?id=tv.danmaku.bili)
-
-### Feature
+## v1.0.5
 ---
-- Custom UI
-- Multiple/single selection, preview and crop function
-- Gif support
-- Video selection
-- Image compression
-- Gif encode(checkout feature/gif-encode to have fun), see [Bilibili/BurstLinker](https://github.com/Bilibili/BurstLinker)
+- 修复Android 10设备上崩溃的BUG
+- 新增圆形裁剪模式
 
-### Download
----
-Core version: only contain the core function.
-
-UI version: contain UI implements base on core version.
-
-- Maven
-
-Core version
-
-```xml
-<dependency>                       
-  	<groupId>com.bilibili</groupId>  
-  	<artifactId>boxing</artifactId>  
-  	<version>1.0.4</version>
-  	<type>pom</type>                
-</dependency>                      		
-```
-
-UI version
-
-```xml
-<dependency>                          
-  	<groupId>com.bilibili</groupId>     
-  	<artifactId>boxing-impl</artifactId>
-  	<version>1.0.4</version>
-  	<type>pom</type>                    
-</dependency>                         
-```
-
-- Gradle
-
-Core version              
 ```java
-compile 'com.bilibili:boxing:1.0.4'
+	BoxingCropOption cropOption = new BoxingCropOption(destUri);
+	cropOption.isCircleMode(true);//启用圆形裁剪模式
+	BoxingConfig singleCropImgConfig = new BoxingConfig(BoxingConfig.Mode.SINGLE_IMG).withCropOption(cropOption)
+		.withMediaPlaceHolderRes(R.drawable.ic_boxing_default_image);
+	Boxing.of(singleCropImgConfig).withIntent(this, BoxingActivity.class).start(this, REQUEST_CODE);
 ```
 
-UI version
-```java
-compile 'com.bilibili:boxing-impl:1.0.4'
-```
+## 项目原地址
 
-### Preview
-
-![multi_image](screenshot/multi_image.webp)
-![single_image_crop](screenshot/single_image_crop.webp)
-![video](screenshot/video.webp)
-
-### Getting Started
-
-- Media loading initialization(required)
-```java
-BoxingMediaLoader.getInstance().init(new IBoxingMediaLoader()); // a class implements IBoxingMediaLoader 
-```
-
-- Image cropping initialization(optional)
-```java
-BoxingCrop.getInstance().init(new IBoxingCrop());  // a class implements IBoxingCrop 
-```
-- Build BoxingConfig
-  Specify the mode(Mode.SINGLE_IMG, Mode.MULTI_IMG, Mode.VIDEO) with camera and gif support. 
-```java
-BoxingConfig config = new BoxingConfig(Mode); // Mode：Mode.SINGLE_IMG, Mode.MULTI_IMG, Mode.VIDEO
-config.needCamera(cameraRes).needGif().withMaxCount(9) // camera, gif support, set selected images count
-.withMediaPlaceHolderRes(resInt) // set the image placeholder, default 0
-.withAlbumPlaceHolderRes(resInt) // set the album placeholder, default 0
-.withVideoDurationRes(resInt) // set the video duration resource in video mode, default 0
-```
-- Get Boxing, set Intent and call start
-```java
-// start thumbnails Activity, need boxing-impl.
-Boxing.of(config).withIntent(context, BoxingActivity.class).start(callerActivity, REQUEST_CODE); 
-  	
-// start view raw image Activity, need boxing-impl.
-Boxing.of(config).withIntent(context, BoxingViewActivity.class).start(callerActivity, REQUEST_CODE); 
-  	
-// call of() use Mode.MULTI_IMG by default.
-Boxing.of().withIntent(context, class).start(callerActivity, REQUEST_CODE);
-```
-- Get Result
-```java
-@Override
-protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-  	List<BaseMedia> medias = Boxing.getResult(data);
-  	// avoid null
-}
-```
-### Advanced usage
-Media loading and image cropping initialization are the same as Simple Usage.
-
-- Customize Activity and Fragment
-  Extends AbsBoxingViewActivity and AbsBoxingViewFragment.
-  call `Boxing.of(config).withIntent(context, AbsBoxingViewActivity.class).start(callerActivity, REQUEST_CODE);` to start.
-
-- Only customize Fragment
-  Extends AbsBoxingViewFragment,no AbsBoxingViewActivity.
-  call `Boxing.of(BoxingConfig).setupFragment(AbsBoxingViewFragment, OnFinishListener);` to start.
-
-
-### FileProvider                                                                                   
-Use camera in Android N, add this in AndroidManifest.xml                                                        
-```xml
-<provider                                                 
-	android:name="android.support.v4.content.FileProvider"
-	android:authorities="${applicationId}.file.provider" >               
-	<meta-data                                            
-		android:name="android.support.FILE_PROVIDER_PATHS"
-		android:resource="@xml/boxing_file_provider"/>
-</provider>                 
-```
-
-### Kotlin Support
-Stay hungry, stay foolish.
-checkout `feature/kotlin` for fun.
-
-### TODO
-Support different config at the same moment.
-
-### License
-----
-Copyright 2017 Bilibili
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+[bilibili boxing](https://github.com/bilibili/boxing)
