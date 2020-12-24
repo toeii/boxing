@@ -34,14 +34,11 @@ Step 2.
 ```
 
 ## 更新说明
-### v1.0.6
----
-- 适配Android 11 （即将更新）
-
 ### v1.0.5
 ---
 - 修复Android 10设备上崩溃的BUG
 - 新增圆形裁剪模式
+- 适配Android 10、11 
 
 ```java
 	BoxingCropOption cropOption = new BoxingCropOption(destUri);
