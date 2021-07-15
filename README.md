@@ -37,12 +37,10 @@ Step 2.
 ### v1.0.5
 ---
 - 修复Android 10设备上崩溃的BUG
-- 新增圆形裁剪模式
 - 适配Android 10、11 
 
 ```java
 	BoxingCropOption cropOption = new BoxingCropOption(destUri);
-	cropOption.isCircleMode(true);//圆形裁剪模式
 	BoxingConfig singleCropImgConfig = new BoxingConfig(BoxingConfig.Mode.SINGLE_IMG).withCropOption(cropOption)
 		.withMediaPlaceHolderRes(R.drawable.ic_boxing_default_image);
 	Boxing.of(singleCropImgConfig).withIntent(this, BoxingActivity.class).start(this, REQUEST_CODE);
